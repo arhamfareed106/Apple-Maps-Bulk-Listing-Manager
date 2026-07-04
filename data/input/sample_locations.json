@@ -1,0 +1,20 @@
+[
+  {
+    "business_name": "Test Store",
+    "street_address": "123 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10001",
+    "country": "US",
+    "phone": "+12125551234"
+  },
+  {
+    "business_name": "Another Store",
+    "street_address": "456 Oak Avenue",
+    "city": "Los Angeles",
+    "state": "CA",
+    "postal_code": "90210",
+    "country": "US",
+    "phone": "+13105559876"
+  }
+]

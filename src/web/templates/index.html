@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Apple Maps Bulk Listing Manager{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+    <p class="mt-1 text-sm text-gray-500">Overview of your Apple Maps listings</p>
+</div>
+
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Total Locations</dt>
+                        <dd class="flex items-baseline">
+                            <div class="text-2xl font-semibold text-gray-900">{{ total_locations }}</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                    <i class="fas fa-check-circle text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Synced Successfully</dt>
+                        <dd class="flex items-baseline">
+                            <div class="text-2xl font-semibold text-gray-900">{{ synced_locations }}</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
+                    <i class="fas fa-clock text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Pending Verification</dt>
+                        <dd class="flex items-baseline">
+                            <div class="text-2xl font-semibold text-gray-900">{{ verifying_locations }}</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
+                    <i class="fas fa-exclamation-triangle text-white text-xl"></i>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                    <dl>
+                        <dt class="text-sm font-medium text-gray-500 truncate">Failed</dt>
+                        <dd class="flex items-baseline">
+                            <div class="text-2xl font-semibold text-gray-900">{{ failed_locations }}</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="mb-8">
+    <h2 class="text-lg font-medium text-gray-900 mb-4">Quick Actions</h2>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="/upload" class="bg-white shadow rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+            <div class="flex justify-center mb-3">
+                <div class="bg-blue-100 rounded-full p-3">
+                    <i class="fas fa-cloud-upload-alt text-blue-600 text-xl"></i>
+                </div>
+            </div>
+            <h3 class="text-sm font-medium text-gray-900">Upload Locations</h3>
+            <p class="mt-1 text-sm text-gray-500">Add new locations from file</p>
+        </a>
+        
+        <a href="/reports" class="bg-white shadow rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+            <div class="flex justify-center mb-3">
+                <div class="bg-green-100 rounded-full p-3">
+                    <i class="fas fa-chart-bar text-green-600 text-xl"></i>
+                </div>
+            </div>
+            <h3 class="text-sm font-medium text-gray-900">View Reports</h3>
+            <p class="mt-1 text-sm text-gray-500">See upload statistics</p>
+        </a>
+        
+        <a href="#" class="bg-white shadow rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+            <div class="flex justify-center mb-3">
+                <div class="bg-purple-100 rounded-full p-3">
+                    <i class="fas fa-sync-alt text-purple-600 text-xl"></i>
+                </div>
+            </div>
+            <h3 class="text-sm font-medium text-gray-900">Sync Now</h3>
+            <p class="mt-1 text-sm text-gray-500">Manual sync all locations</p>
+        </a>
+        
+        <a href="#" class="bg-white shadow rounded-lg p-6 text-center hover:shadow-md transition-shadow">
+            <div class="flex justify-center mb-3">
+                <div class="bg-yellow-100 rounded-full p-3">
+                    <i class="fas fa-cog text-yellow-600 text-xl"></i>
+                </div>
+            </div>
+            <h3 class="text-sm font-medium text-gray-900">Settings</h3>
+            <p class="mt-1 text-sm text-gray-500">Configure integrations</p>
+        </a>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Activity</h3>
+        <p class="mt-1 text-sm text-gray-500">Latest sync jobs</p>
+    </div>
+    <ul class="divide-y divide-gray-200">
+        {% if recent_jobs %}
+            {% for job in recent_jobs %}
+            <li class="px-4 py-4 sm:px-6">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm font-medium text-blue-600 truncate">#{{ job.id }}</div>
+                    <div class="ml-2 flex-shrink-0 flex">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {{ job.status }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-2 sm:flex sm:justify-between">
+                    <div class="sm:flex">
+                        <div class="mr-6 flex items-center text-sm text-gray-500">
+                            <i class="fas fa-database mr-1"></i>
+                            {{ job.aggregator|title }}
+                        </div>
+                        <div class="mt-2 mr-6 flex items-center text-sm text-gray-500 sm:mt-0">
+                            <i class="fas fa-calendar mr-1"></i>
+                            {{ job.started_at.strftime('%Y-%m-%d %H:%M') if job.started_at else 'N/A' }}
+                        </div>
+                    </div>
+                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                        <span class="text-green-600">{{ job.success_count }} success</span>
+                        <span class="mx-2">•</span>
+                        <span class="text-red-600">{{ job.failed_count }} failed</span>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li class="px-4 py-4 sm:px-6 text-center text-gray-500">
+                No recent activity
+            </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

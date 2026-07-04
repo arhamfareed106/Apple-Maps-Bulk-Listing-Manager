@@ -1,0 +1,56 @@
+# Aggregator API configurations
+
+apple_business_connect:
+  name: "Apple Business Connect"
+  base_url: "https://businessconnect.apple.com/api"
+  auth_endpoint: "/oauth/token"
+  version: "v1"
+  rate_limit: 1000  # requests per hour
+  batch_limit: 100  # max locations per batch
+  timeout: 30
+  retry_attempts: 3
+  retry_backoff: 2
+
+yext:
+  name: "Yext"
+  base_url: "https://api.yext.com/v2/accounts"
+  auth_method: "api_key"
+  version: "20230101"
+  rate_limit: 5000  # requests per hour
+  batch_limit: 500
+  timeout: 30
+  retry_attempts: 3
+  retry_backoff: 2
+
+uberall:
+  name: "Uberall"
+  base_url: "https://uberall.com/api"
+  auth_method: "api_key"
+  version: "v2"
+  rate_limit: 2000  # requests per hour
+  batch_limit: 200
+  timeout: 30
+  retry_attempts: 3
+  retry_backoff: 2
+
+rio_seo:
+  name: "Rio SEO"
+  base_url: "https://api.rioseo.com/v1"
+  auth_method: "api_key"
+  version: "v1"
+  rate_limit: 1000  # requests per hour
+  batch_limit: 100
+  timeout: 30
+  retry_attempts: 3
+  retry_backoff: 2
+
+# Common settings
+common:
+  max_concurrent_requests: 10
+  request_timeout: 30
+  connection_timeout: 10
+  read_timeout: 20
+  max_retries: 3
+  retry_backoff_factor: 2.0
+  circuit_breaker_failure_threshold: 5
+  circuit_breaker_recovery_timeout: 60

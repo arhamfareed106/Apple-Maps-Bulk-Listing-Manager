@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Upload - Apple Maps Bulk Listing Manager{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-2xl font-semibold text-gray-900">Upload Locations</h1>
+    <p class="mt-1 text-sm text-gray-500">Upload location data to sync with Apple Maps</p>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Upload File</h3>
+        <p class="mt-1 text-sm text-gray-500">Choose a file containing location data</p>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-6">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Target Platform</label>
+                <select name="aggregator" id="aggregator" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <option value="apple">Apple Business Connect</option>
+                    <option value="yext">Yext</option>
+                    <option value="uberall">Uberall</option>
+                    <option value="rio_seo">Rio SEO</option>
+                </select>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Upload File</label>
+                <div id="dropZone" class="w-full flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="space-y-1 text-center">
+                        <div class="flex text-sm text-gray-600 justify-center">
+                            <label for="file" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                <span>Upload a file</span>
+                                <input id="file" name="file" type="file" class="sr-only" accept=".csv,.xlsx,.xls,.json">
+                            </label>
+                            <p class="pl-1">or drag and drop</p>
+                        </div>
+                        <p class="text-xs text-gray-500">CSV, XLSX, XLS, or JSON up to 10MB</p>
+                        <div id="fileName" class="mt-2 text-sm text-gray-500 hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mappingSection" class="mb-6 hidden">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Column Mapping</label>
+                <div id="columnMapping" class="bg-gray-50 p-4 rounded-md">
+                    <p class="text-sm text-gray-500">Column mapping will appear after file upload</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" id="uploadBtn" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50">
+                    <i class="fas fa-upload mr-2"></i>
+                    Start Upload
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Preview Section -->
+<div id="previewSection" class="mt-6 bg-white shadow overflow-hidden sm:rounded-lg hidden">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">File Preview</h3>
+        <p class="mt-1 text-sm text-gray-500">First few rows of your data</p>
+    </div>
+    <div class="border-t border-gray-200 p-4">
+        <div id="previewTable" class="overflow-x-auto">
+            <!-- Preview table will be populated here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
